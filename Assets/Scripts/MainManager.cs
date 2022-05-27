@@ -10,6 +10,7 @@ using UnityEditor;
 public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
+    public GameObject charSelected = null;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +45,7 @@ public class MainManager : MonoBehaviour
     {
 
 #if UNITY_EDITOR
-            EditorApplication.ExitPlaymode();
+        EditorApplication.ExitPlaymode();
 
 #else
         Application.Quit();
