@@ -1,0 +1,33 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "automapping.whileDrawing": true,
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
+        "Tileset_swamp.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "isometric_grass_and_water.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "C:/Users/spike/Downloads/free-swamp-game-tileset-pixel-art/1 Tiles",
+    "openFiles": [
+        "Tileset_swamp.tsx"
+    ],
+    "project": "PTR.tiled-project",
+    "recentFiles": [
+        "Tileset_swamp.tsx",
+        "isometric_grass_and_water.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx"
+}
