@@ -10,6 +10,7 @@ using UnityEditor;
 public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
+    public int playerSelected;
     public GameObject charSelected = null;
 
     // Start is called before the first frame update
