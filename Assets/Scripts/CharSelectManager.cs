@@ -33,6 +33,7 @@ public class CharSelectManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(2, LoadSceneMode.Single);
+        MainManager.Instance.playerSelected = selectedCharacter;
     }
 
     private void Awake()
