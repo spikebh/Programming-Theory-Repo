@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float playerSpeed = 10.0f;
     [SerializeField] private float playerJumpSpeed = 80.0f;
-    [SerializeField] Rigidbody rbPlayer;
+    [SerializeField] public Rigidbody rbPlayer;
     // Start is called before the first frame update
     void Awake()
     {
@@ -16,10 +16,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerMovement();
+        PlayerMotion();
     }
 
-    void PlayerMovement()
+    public void PlayerMotion()
     {
         if (Input.GetKeyDown(KeyCode.Space)) rbPlayer.AddForce(Vector3.up * playerJumpSpeed, ForceMode.Impulse);
 
