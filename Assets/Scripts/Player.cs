@@ -16,16 +16,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerMotion();
+        PlayerMotion(playerSpeed, playerJumpSpeed);
     }
 
-    public void PlayerMotion()
+    public void PlayerMotion(float playerSpeed, float playerJumpSpeed)
     {
         if (Input.GetKeyDown(KeyCode.Space)) rbPlayer.AddForce(Vector3.up * playerJumpSpeed, ForceMode.Impulse);
 
-        if (Input.GetKeyDown(KeyCode.D)) rbPlayer.AddForce(Vector3.right * playerSpeed, ForceMode.Force);
+        if (Input.GetKeyDown(KeyCode.D)) rbPlayer.AddForce(Vector3.forward * playerSpeed, ForceMode.Acceleration);
 
-        if (Input.GetKeyDown(KeyCode.A)) rbPlayer.AddForce(Vector3.left * playerSpeed, ForceMode.Force);
+        if (Input.GetKeyDown(KeyCode.A)) rbPlayer.AddForce(Vector3.back * playerSpeed, ForceMode.Acceleration);
 
 
     }

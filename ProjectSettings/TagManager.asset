@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Spawnposition
+  - Dog
+  - Guy
+  - Fox
   layers:
   - Default
   - TransparentFX
