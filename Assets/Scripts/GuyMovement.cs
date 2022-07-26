@@ -9,11 +9,19 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] private float guyJumpSpeed = 50.0f;
     [SerializeField] public Rigidbody rbGuy;
     [SerializeField] private bool isGrounded;
+    private Animator guyAnimator;
+    public bool rotateToLeft = false;
+    private float rotation = 180.0f;
+    private Vector3 rotationLeft;
+    private Vector3 rotationRight;
 
     // Start is called before the first frame update
     void Start()
     {
+        rotationLeft = new Vector3(x: 0f, y: rotation, z: 0f);
+        rotationRight = new Vector3(x: 0f, y: -rotation, z: 0f);
         rbGuy = GameObject.FindWithTag("Guy").GetComponent<Rigidbody>();
+        guyAnimator = GetComponent<Animator>();
 
     }
 
@@ -27,10 +35,20 @@ public class GuyMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && isGrounded) rbGuy.AddForce(Vector3.up * guyJumpSpeed, ForceMode.Impulse);
 
-        if (Input.GetKey(KeyCode.D)) rbGuy.AddForce(Vector3.right * guySpeed);
+        else if (Input.GetKey(KeyCode.D))
+        {
+            rbGuy.AddForce(Vector3.right * guySpeed, ForceMode.Force);
+            guyAnimator.SetBool("isMoving", true);
+            MovingRight();
 
-        if (Input.GetKey(KeyCode.A)) rbGuy.AddForce(Vector3.left * guySpeed);
-
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            rbGuy.AddForce(Vector3.left * guySpeed, ForceMode.Force);
+            guyAnimator.SetBool("isMoving", true);
+            MovingLeft();
+        }
+        else guyAnimator.SetBool("isMoving", false);
 
     }
 
@@ -42,6 +60,31 @@ public class GuyMovement : MonoBehaviour
     void OnCollisionExit(Collision collision)
     {
         isGrounded = false;
+    }
+
+    void MovingRight()
+    {
+
+        //Debug.Log(rbGuy.transform.rotation.y);
+        if (!rotateToLeft) return;
+        else
+        {
+            rbGuy.transform.Rotate(rotationLeft);
+            rotateToLeft = false;
+        }
+    }
+
+    void MovingLeft()
+    {
+
+        //Debug.Log(rbGuy.transform.rotation.y);
+        if (rotateToLeft) return;
+        else
+        {
+            rbGuy.transform.Rotate(rotationRight);
+            rotateToLeft = true;
+        }
+
     }
 }
 
