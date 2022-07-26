@@ -26165,6 +26165,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9545864, guid: 957efc93c4488964582c89c0bf939bf0, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 957efc93c4488964582c89c0bf939bf0, type: 3}
 --- !u!4 &1342173698 stripped
@@ -26218,7 +26222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e873d96ba3b71d245a6998c9c83959d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dogSpeed: 500
+  dogSpeed: 4000
   dogJumpSpeed: 50
   rbDog: {fileID: 0}
   isGrounded: 0
