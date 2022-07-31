@@ -8,6 +8,7 @@ TagManager:
   - Dog
   - Guy
   - Fox
+  - Ground
   layers:
   - Default
   - TransparentFX

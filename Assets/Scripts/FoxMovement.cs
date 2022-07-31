@@ -54,7 +54,7 @@ public class FoxMovement : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        isGrounded = true;
+        if (collision.gameObject.CompareTag("Ground")) isGrounded = true;
     }
 
     void OnCollisionExit(Collision collision)
