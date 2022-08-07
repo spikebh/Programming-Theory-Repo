@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
@@ -8,6 +9,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Transform playerTarget;
     [SerializeField] private Vector3 offset;
     [SerializeField] private bool funcExect;
+    [SerializeField] private GameObject[] gameOverMenu;
 
     public float lerpValue = 1.0f;
 
@@ -17,7 +19,6 @@ public class CameraMovement : MonoBehaviour
     {
         playerSelected = MainManager.Instance.playerSelected;
         Invoke("SelectedChar", 1);
-        //playerTarget = GameObject.FindWithTag("Dog").transform;
 
     }
 
@@ -52,4 +53,10 @@ public class CameraMovement : MonoBehaviour
         funcExect = true;
 
     }
+
+    void Update()
+    {
+
+    }
+
 }

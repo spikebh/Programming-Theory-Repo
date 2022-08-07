@@ -30,7 +30,7 @@ public class DogMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        DogMotion();
+        if (!MainManager.Instance.gameOver) DogMotion();
     }
 
     public void DogMotion()

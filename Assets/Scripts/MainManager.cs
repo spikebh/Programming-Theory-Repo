@@ -12,6 +12,7 @@ public class MainManager : MonoBehaviour
     public static MainManager Instance;
     public int playerSelected;
     public GameObject charSelected = null;
+    public bool gameOver = false;
 
     // Start is called before the first frame update
     void Start()
