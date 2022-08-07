@@ -28,7 +28,7 @@ public class FoxMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        FoxMotion();
+        if (!MainManager.Instance.gameOver) FoxMotion();
     }
 
     public void FoxMotion()

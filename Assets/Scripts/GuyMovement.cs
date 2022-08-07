@@ -28,7 +28,7 @@ public class GuyMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        GuyMotion();
+        if (!MainManager.Instance.gameOver) GuyMotion();
     }
 
     public void GuyMotion()
