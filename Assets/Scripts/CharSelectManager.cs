@@ -41,4 +41,14 @@ public class CharSelectManager : MonoBehaviour
         selectedCharacter = 0;
         characters[selectedCharacter].SetActive(true);
     }
+
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Return)) StartGame();
+
+        if (Input.GetKeyUp(KeyCode.RightArrow)) NextCharacter();
+
+        if (Input.GetKeyUp(KeyCode.LeftArrow)) PreviousCharacter();
+
+    }
 }
