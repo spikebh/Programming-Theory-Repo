@@ -7,7 +7,7 @@ public class MovementPrompt : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Invoke("DisableGO", 10.0f);
+        Invoke("DisableGO", 5.0f);
     }
 
     // Update is called once per frame
