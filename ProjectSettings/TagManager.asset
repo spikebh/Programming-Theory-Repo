@@ -11,6 +11,8 @@ TagManager:
   - Ground
   - EndLevel
   - GOMenu
+  - leftcollider
+  - rightcollider
   layers:
   - Default
   - TransparentFX

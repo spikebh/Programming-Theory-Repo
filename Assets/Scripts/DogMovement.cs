@@ -17,6 +17,8 @@ public class DogMovement : MonoBehaviour
 
 
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,7 @@ public class DogMovement : MonoBehaviour
         rotationRight = new Vector3(x: 0f, y: -rotation, z: 0f);
         dogAnimation = GetComponent<Animator>();
         rbDog = GameObject.FindWithTag("Dog").GetComponent<Rigidbody>();
+
 
     }
 
@@ -87,5 +90,6 @@ public class DogMovement : MonoBehaviour
         }
 
     }
+
 }
 

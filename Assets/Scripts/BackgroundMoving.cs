@@ -6,22 +6,37 @@ public class BackgroundMoving : MonoBehaviour
 {
     public Transform cameraPos;
     public Transform backPos;
-    private float xPos = 60.0f;
-    private float currentPos;
-    private float backSize;
-    // Start is called before the first frame update
+    private float xPos = 125.2f;
+    private float currentBackPos;
+    private float currentCameraPos;
+    private float result;
+    private Vector3 newPos;
+
     void Awake()
     {
-        cameraPos = GameObject.Find("MainCamera").GetComponent<Transform>();
+        cameraPos = GameObject.Find("Main Camera").GetComponent<Transform>();
         backPos = GameObject.Find("Background_Nature").GetComponent<Transform>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        currentPos = cameraPos.transform.position.x;
-        //backSize = backPos.transform.
+        result = ComputeResult();
+        Debug.Log("result: " + result + "\nCameraPos: " + currentCameraPos + "\nBackPos: " + currentBackPos);
+        if (result >= 86f)
+        {
+            //newPos = new Vector3(currentBackPos + 69.0f, 0f, 0f); // I will leave this here to remind myself, how I can be so dumb sometimes.
+            backPos.transform.Translate(Vector3.right * xPos, Space.World);
 
-        //if(cameraPos.transform.position.x >= )
+        }
+        else if (result <= -74f) backPos.transform.Translate(Vector3.left * xPos, Space.World);
     }
+
+    private float ComputeResult()
+    {
+        currentCameraPos = cameraPos.transform.position.x;
+        currentBackPos = backPos.transform.position.x;
+        return currentCameraPos - currentBackPos;
+    }
+
+
 }
