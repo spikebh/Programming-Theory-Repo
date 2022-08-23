@@ -4,29 +4,23 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float playerSpeed = 10.0f;
-    [SerializeField] private float playerJumpSpeed = 80.0f;
-    [SerializeField] public Rigidbody rbPlayer;
+
+    public float playerSpeed = 500.0f;
+    public float playerJumpSpeed = 50.0f;
     // Start is called before the first frame update
     void Awake()
     {
-        rbPlayer = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerMotion(playerSpeed, playerJumpSpeed);
+
     }
 
-    public void PlayerMotion(float playerSpeed, float playerJumpSpeed)
+    public virtual void PlayerDash()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) rbPlayer.AddForce(Vector3.up * playerJumpSpeed, ForceMode.Impulse);
-
-        if (Input.GetKeyDown(KeyCode.D)) rbPlayer.AddForce(Vector3.forward * playerSpeed, ForceMode.Acceleration);
-
-        if (Input.GetKeyDown(KeyCode.A)) rbPlayer.AddForce(Vector3.back * playerSpeed, ForceMode.Acceleration);
-
-
+        Debug.Log("player is dashing");
     }
 }

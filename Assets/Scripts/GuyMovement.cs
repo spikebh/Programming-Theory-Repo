@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuyMovement : MonoBehaviour
+public class GuyMovement : Player // INHERITANCE
 {
     // Start is called before the first frame update
-    [SerializeField] private float guySpeed = 500.0f;
-    [SerializeField] private float guyJumpSpeed = 50.0f;
+    [SerializeField] private float playerSpeed = 15000.0f;
+    [SerializeField] private float playerJumpSpeed = 310.0f;
     [SerializeField] public Rigidbody rbGuy;
     [SerializeField] private bool isGrounded;
     private Animator guyAnimator;
@@ -14,6 +14,7 @@ public class GuyMovement : MonoBehaviour
     private float rotation = 180.0f;
     private Vector3 rotationLeft;
     private Vector3 rotationRight;
+    private float dashSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -22,33 +23,42 @@ public class GuyMovement : MonoBehaviour
         rotationRight = new Vector3(x: 0f, y: -rotation, z: 0f);
         rbGuy = GameObject.FindWithTag("Guy").GetComponent<Rigidbody>();
         guyAnimator = GetComponent<Animator>();
+        dashSpeed = playerSpeed * 1.5f;
 
+    }
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.LeftShift)) PlayerDash();
+        else playerSpeed = 15000.0f;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!MainManager.Instance.gameOver) GuyMotion();
+        if (!MainManager.Instance.gameOver) GuyMotion(); // ABSTRACTION 
     }
 
     public void GuyMotion()
     {
-        if (Input.GetKey(KeyCode.Space) && isGrounded) rbGuy.AddForce(Vector3.up * guyJumpSpeed, ForceMode.Impulse);
+        if (Input.GetKey(KeyCode.Space) && isGrounded) rbGuy.AddForce(Vector3.up * playerJumpSpeed, ForceMode.Impulse);
 
         else if (Input.GetKey(KeyCode.D))
         {
-            rbGuy.AddForce(Vector3.right * guySpeed, ForceMode.Force);
+            rbGuy.AddForce(Vector3.right * playerSpeed, ForceMode.Force);
             guyAnimator.SetBool("isMoving", true);
-            MovingRight();
+            MovingRight(); // ABSTRACTION
 
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            rbGuy.AddForce(Vector3.left * guySpeed, ForceMode.Force);
+            rbGuy.AddForce(Vector3.left * playerSpeed, ForceMode.Force);
             guyAnimator.SetBool("isMoving", true);
-            MovingLeft();
+            MovingLeft(); // ABSTRACTION
         }
         else guyAnimator.SetBool("isMoving", false);
+
+        if (Input.GetKeyUp(KeyCode.E)) PlayerDash();
 
     }
 
@@ -85,6 +95,12 @@ public class GuyMovement : MonoBehaviour
             rotateToLeft = true;
         }
 
+    }
+
+    public override void PlayerDash()
+    {
+        base.PlayerDash(); // POLYMORPHISM
+        playerSpeed = dashSpeed;
     }
 }
 

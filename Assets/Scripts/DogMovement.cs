@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DogMovement : MonoBehaviour
+public class DogMovement : Player // INHERITANCE
 {
-    [SerializeField] private float dogSpeed = 500.0f;
-    [SerializeField] private float dogJumpSpeed = 50.0f;
+    [SerializeField] private float playerSpeed = 4000.0f;
+    [SerializeField] private float playerJumpSpeed = 55.0f;
     [SerializeField] public Rigidbody rbDog;
     [SerializeField] private bool isGrounded;
     private Animator dogAnimation;
@@ -14,9 +14,7 @@ public class DogMovement : MonoBehaviour
     private float rotation = 180.0f;
     private Vector3 rotationLeft;
     private Vector3 rotationRight;
-
-
-
+    private float dashSpeed;
 
 
     // Start is called before the first frame update
@@ -26,31 +24,35 @@ public class DogMovement : MonoBehaviour
         rotationRight = new Vector3(x: 0f, y: -rotation, z: 0f);
         dogAnimation = GetComponent<Animator>();
         rbDog = GameObject.FindWithTag("Dog").GetComponent<Rigidbody>();
-
-
+        dashSpeed = playerSpeed * 1.8f;
     }
 
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.LeftShift)) PlayerDash();
+        else playerSpeed = 4000.0f;
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!MainManager.Instance.gameOver) DogMotion();
+        if (!MainManager.Instance.gameOver) DogMotion(); // ABSTRACTION
     }
 
     public void DogMotion()
     {
-        if (Input.GetKey(KeyCode.Space) && isGrounded) rbDog.AddForce(Vector3.up * dogJumpSpeed, ForceMode.Impulse);
+        if (Input.GetKey(KeyCode.Space) && isGrounded) rbDog.AddForce(Vector3.up * playerJumpSpeed, ForceMode.Impulse);
 
         else if (Input.GetKey(KeyCode.D))
         {
-            rbDog.AddForce(Vector3.right * dogSpeed, ForceMode.Force);
+            rbDog.AddForce(Vector3.right * playerSpeed, ForceMode.Force);
             dogAnimation.SetBool("isMoving", true);
-            MovingRight();
+            MovingRight(); // ABSTRACTION
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            rbDog.AddForce(Vector3.left * dogSpeed, ForceMode.Force);
+            rbDog.AddForce(Vector3.left * playerSpeed, ForceMode.Force);
             dogAnimation.SetBool("isMoving", true);
-            MovingLeft();
+            MovingLeft(); // ABSTRACTION
 
         }
         else dogAnimation.SetBool("isMoving", false);
@@ -91,5 +93,10 @@ public class DogMovement : MonoBehaviour
 
     }
 
+    public override void PlayerDash()
+    {
+        base.PlayerDash(); // POLYMORPHISM
+        playerSpeed = dashSpeed;
+    }
 }
 
